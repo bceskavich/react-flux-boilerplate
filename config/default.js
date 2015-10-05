@@ -2,6 +2,7 @@ var path = require('path');
 
 module.exports = {
   env: (process.env.NODE_ENV || 'development'),
+  deploy: (process.env.DEPLOY || 'static'),
   webpackServer: {
     port: (process.env.WEBPACK_PORT || 8888)
   },

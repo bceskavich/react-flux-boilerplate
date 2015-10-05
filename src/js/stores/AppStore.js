@@ -6,7 +6,7 @@ class AppStore {
     this.bindActions(AppActions);
 
     // State values
-    this.loggedIn = true;
+    this.loggedIn = false;
   }
 
   onSetUserState(state) {

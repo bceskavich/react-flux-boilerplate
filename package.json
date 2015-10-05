@@ -1,12 +1,19 @@
 {
   "name": "react-flux-boilerplate",
   "version": "0.0.1",
-  "description": "Boilerplate for a React + Flux app.",
+  "description": "Boilerplate for a React + Flux apps.",
   "scripts": {
     "clean": "rm -rf public/*",
     "lint": "eslint src",
+    "build": "npm run clean && webpack --progress --colors --config config/webpack.production.js",
     "dev": "npm run clean && nodemon --exec babel-node --stage 0 -- dev-server.js",
-    "build": "npm run clean && webpack --progress --colors --config config/webpack.production.js"
+    "deploy-static": "NODE_ENV=production npm run build && surge ./build --domain react-flux-boilerplate.surge.sh",
+    "deploy-heroku": "git push heroku master",
+    "postinstall": "NODE_ENV=production npm run build",
+    "start": "NODE_ENV=production babel-node --stage 0 -- server.js"
+  },
+  "engines": {
+    "node": "4.0.0"
   },
   "author": "Billy Ceskavich",
   "repository": "https://github.com/bceskavich/react-flux-boilerplate",

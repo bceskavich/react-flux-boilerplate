@@ -10,8 +10,7 @@ import WebpackDevConfig from './config/webpack.development';
 const APP_PORT = config.get('server.port');
 const WEBPACK_PORT = config.get('webpackServer.port');
 
-
-// B) App server
+// A) App server
 let app = express();
 app.use('/assets', proxy(url.parse(`http://localhost:${WEBPACK_PORT}/assets`)));
 app.use('/', (req, res) => {
@@ -19,11 +18,10 @@ app.use('/', (req, res) => {
 });
 
 app.listen(APP_PORT, () => {
-  console.log('\nIt\'s alive! On port ...\n');
-  console.log(`----------\n|  ${APP_PORT}  |\n----------\n       || \n(\\__/) || \n(•ㅅ•) || \n/ 　 づ\n\n`);
+  console.log(`App server is alive on port ${APP_PORT}\n`);
 });
 
-// C) Webpack
+// B) Webpack Dev Server
 let devServer = new WebpackDevServer(webpack(WebpackDevConfig), {
   hot: true,
   historyApiFallback: true,
@@ -35,6 +33,6 @@ let devServer = new WebpackDevServer(webpack(WebpackDevConfig), {
   }
 });
 
-devServer.listen(WEBPACK_PORT, () => console.log(
-  `I'll be watching you, on port: ${WEBPACK_PORT}\n\n`
-));
+devServer.listen(WEBPACK_PORT, () => {
+  console.log(`Webpack is watching on port ${WEBPACK_PORT}\n`);
+});

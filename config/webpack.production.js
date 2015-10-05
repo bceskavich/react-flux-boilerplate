@@ -14,10 +14,7 @@ module.exports = merge(baseConfig, {
     loaders: [
       {
         test: /\.js$/,
-        loader: 'babel-loader',
-        query: {
-          stage: 0
-        },
+        loaders: ['babel-loader?stage=0'],
         exclude: [/node_modules/, /config/]
       },
       {
@@ -30,9 +27,7 @@ module.exports = merge(baseConfig, {
   },
   plugins: [
     new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      minimize: true
-    }),
-    new ExtractTextPlugin("app.scss", "app.[contenthash].css")
+    new webpack.optimize.UglifyJsPlugin({ minimize: true }),
+    new ExtractTextPlugin('app.scss', 'app.[contenthash].css')
   ]
 });

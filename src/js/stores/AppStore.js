@@ -5,11 +5,12 @@ class AppStore {
   constructor() {
     this.bindActions(AppActions);
 
-    this.something = false;
+    // State values
+    this.loggedIn = false;
   }
 
-  onDoSomething(state) {
-    this.something = state;
+  onSetUserState(state) {
+    this.loggedIn = state;
   }
 }
 
